@@ -12,15 +12,14 @@
     <meta property="og:title" content="Squared Away Consulting - Español (MX)"> <meta property="og:description" content="[Su descripción específica en español de México aquí]"> <meta property="og:url" content="https://www.squaredawayconsulting.net/es-MX/">
     <meta property="og:image" content="https://www.squaredawayconsulting.net/images/og-image.jpg">
     
-<script>
-    var _salemove = _salemove || [];
-    _salemove.push(['init', {
-        appId: 'd7cd2c26-1f0e-4ddf-8f1a-e51ff9bd1764' // <<< THIS IS CRUCIAL AND UNIQUE TO YOUR ACCOUNT
-    }]);
-</script>
-<script async src="https://api.glia.com/salemove_integration.js"></script>
-    
-</head>
+    <script>
+        var _salemove = _salemove || [];
+        _salemove.push(['init', {
+            appId: 'd7cd2c26-1f0e-4ddf-8f1a-e51ff9bd1764' 
+        }]);
+    </script>
+    <script async src="https://api.glia.com/salemove_integration.js"></script>
+    </head>
 <body>
     <header>
         <nav>
@@ -54,32 +53,20 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Define the current locale for THIS page.
             // This is used specifically for the Glia integration.
-            const currentLocale = 'es-MX'; 
+            const currentLocale = 'es-MX'; // <<< --- SET TO es-MX FOR THIS FILE --- >>>
             
-            // --- START OF GLIA LOCALE INTEGRATION (Keep this part) ---
-            let gliaRetryCount = 0;
-            const MAX_GLIA_RETRIES = 20; // Will retry for up to 20 * 500ms = 10 seconds
-
-            const setGliaLocale = () => {
-                if (window.VisitorApp && typeof window.VisitorApp.setLocale === 'function') {
-                    window.VisitorApp.setLocale(currentLocale);
-                    console.log(`Glia Visitor App locale set to: ${currentLocale}`);
-                } else {
-                    if (gliaRetryCount < MAX_GLIA_RETRIES) {
-                        gliaRetryCount++;
-                        console.warn(`Glia Visitor App API or setLocale function not found. Retrying ${gliaRetryCount}/${MAX_GLIA_RETRIES} in 500ms...`);
-                        setTimeout(setGliaLocale, 500); 
-                    } else {
-                        console.error('Glia Visitor App API not found after multiple retries. Skipping locale setting.');
-                    }
-                }
-            };
-
-            setGliaLocale();
-            // --- END OF GLIA LOCALE INTEGRATION ---
-
-            // The rest of the translation loading and applying logic is now in js/main.js
-            // You can remove any previous loadLocaleData and applyTranslations calls/definitions from here.
+            // --- UPDATED GLIA LOCALE INTEGRATION ---
+            // Push the setLocale command directly to Glia's command queue (_salemove).
+            // This ensures Glia processes the setLocale command when it's ready.
+            if (window._salemove) {
+                window._salemove.push(['setLocale', currentLocale]);
+                console.log(`Glia locale command pushed to queue: ${currentLocale}`);
+            } else {
+                console.error('Glia command queue (_salemove) not found. Glia SDK might not be initialized correctly.');
+                // In a production scenario, you might add a small, limited retry here
+                // if _salemove might become available slightly later than DOMContentLoaded.
+            }
+            // --- END UPDATED GLIA LOCALE INTEGRATION ---
         });
     </script>
 </body>
