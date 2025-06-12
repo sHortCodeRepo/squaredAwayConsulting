@@ -15,7 +15,8 @@
     <meta property="og:description" content="[Your German specific description here]">
     <meta property="og:url" content="https://www.squaredawayconsulting.net/de-DE/">
     <meta property="og:image" content="https://www.squaredawayconsulting.net/images/og-image.jpg">
-  <script async src="https://api.glia.com/salemove_integration.js"></script>
+    
+    <script async src="https://api.glia.com/salemove_integration.js"></script> 
 </head>
 <body>
     <header>
@@ -30,7 +31,10 @@
 
     <main>
         <section class="hero">
-            <h1 id="hero-title"></h1> <p id="hero-subtitle"></p> <button id="cta-button"></button> </section>
+            <h1 id="hero-title"></h1> 
+            <p id="hero-subtitle"></p> 
+            <button id="cta-button"></button> 
+        </section>
 
         <section class="features">
             <h2 id="features-heading"></h2>
@@ -38,9 +42,8 @@
                 <h3 id="feature1-title"></h3>
                 <p id="feature1-description"></p>
             </div>
-            </section>
-
-        </main>
+        </section>
+    </main>
 
     <footer>
         <p id="footer-copyright"></p>
@@ -49,15 +52,12 @@
     <script src="/js/main.js"></script> 
     
     <script>
-        // This script runs after main.js, so main.js can set up utility functions if needed.
         document.addEventListener('DOMContentLoaded', () => {
-            // Define the current locale based on the folder this file is in
-            const currentLocale = 'de-DE'; 
+            const currentLocale = 'de-DE'; // Define the current locale for THIS page
             
             // Function to load locale data (can be in main.js or here)
             async function loadLocaleData(locale) {
                 try {
-                    // This path is ABSOLUTE from the domain root!
                     const response = await fetch(`/locales/${locale}.json`); 
                     if (!response.ok) {
                         throw new Error(`Failed to load locale data for ${locale}: ${response.statusText}`);
@@ -65,7 +65,6 @@
                     return await response.json();
                 } catch (error) {
                     console.error('Error loading locale data:', error);
-                    // Fallback to a default or show an error message
                     return {}; 
                 }
             }
@@ -85,8 +84,8 @@
                     langSwitcher.innerHTML = `
                         <a href="/en-US/">English (US)</a> | 
                         <a href="/es-ES/">Español (ES)</a> |
-                        <a href="/fr-FR/">Français (FR)</a>
-                        `;
+                        <a href="/fr-FR/">Français (FR)</a> |
+                        <a href="/de-DE/">Deutsch (DE)</a> `;
                     // Highlight current language
                     langSwitcher.querySelector(`a[href="/${currentLocale}/"]`).classList.add('active-locale');
                 }
@@ -95,6 +94,24 @@
             // Load and apply data for the current locale
             loadLocaleData(currentLocale).then(data => {
                 applyTranslations(data);
+
+                // --- START OF NEW ADDITION FOR GLIA LOCALE ---
+                const setGliaLocale = () => {
+                    // Check if window.VisitorApp and its setLocale method are available
+                    if (window.VisitorApp && typeof window.VisitorApp.setLocale === 'function') {
+                        window.VisitorApp.setLocale(currentLocale);
+                        console.log(`Glia Visitor App locale set to: ${currentLocale}`);
+                    } else {
+                        // If not ready, retry after a short delay
+                        console.warn('Glia Visitor App API or setLocale function not found. Retrying in 500ms...');
+                        setTimeout(setGliaLocale, 500); 
+                    }
+                };
+
+                // Initial call to start trying to set the Glia locale
+                setGliaLocale();
+                // --- END OF NEW ADDITION FOR GLIA LOCALE ---
+
             });
         });
     </script>
