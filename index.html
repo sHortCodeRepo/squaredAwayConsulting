@@ -1,27 +1,32 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
+<html lang="en"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Squared Away Consulting</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-            text-align: center;
-        }
-        h1 {
-            color: #0056b3;
-        }
-        p {
-            font-size: 1.1em;
-        }
+        body { font-family: sans-serif; margin: 20px; }
+        header { margin-bottom: 20px; }
+        nav a { margin-right: 15px; text-decoration: none; color: blue; }
+        nav a:hover { text-decoration: underline; }
     </style>
 <script async src="https://api.glia.com/salemove_integration.js"></script>
 </head>
 <body>
-    <h1>Squared Away Consulting (Playground Site)</h1>
+   <header>
+        <nav>
+            <a href="javascript:void(0)" onclick="window.app.navigate('/')">Home</a>
+            <a href="javascript:void(0)" onclick="window.app.navigate('/about')">About</a>
+        </nav>
+        <select id="lang-switcher">
+            <option value="en">English</option>
+            <option value="et">Eesti</option>
+            <option value="es">Español</option>
+            </select>
+    </header>
+
+    <main id="content">
+        </main>
+
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>
