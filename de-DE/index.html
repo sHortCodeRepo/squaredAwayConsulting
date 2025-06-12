@@ -83,9 +83,9 @@
                 if (langSwitcher) {
                     langSwitcher.innerHTML = `
                         <a href="/en-US/">English (US)</a> | 
+                        <a href="/et-EE/">Estonian</a> |
                         <a href="/es-ES/">Español (ES)</a> |
-                        <a href="/fr-FR/">Français (FR)</a> |
-                        <a href="/de-DE/">Deutsch (DE)</a> `;
+                        <a href="/fr-FR/">Français (FR)</a>;
                     // Highlight current language
                     langSwitcher.querySelector(`a[href="/${currentLocale}/"]`).classList.add('active-locale');
                 }
