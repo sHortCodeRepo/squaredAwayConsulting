@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de-DE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squared Away Consulting - German</title>
+    
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/style.css"> 
+    
+    <link rel="canonical" href="https://www.squaredawayconsulting.net/de-DE/">
+
+    <meta property="og:title" content="Squared Away Consulting - German">
+    <meta property="og:description" content="[Your German specific description here]">
+    <meta property="og:url" content="https://www.squaredawayconsulting.net/de-DE/">
+    <meta property="og:image" content="https://www.squaredawayconsulting.net/images/og-image.jpg">
+  <script async src="https://api.glia.com/salemove_integration.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/de-DE/">Home</a>
+            <a href="/de-DE/services.html">Services</a>
+            <a href="/de-DE/about.html">About Us</a>
+            <a href="/de-DE/contact.html">Contact</a>
+            <div id="language-switcher"></div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1 id="hero-title"></h1> <p id="hero-subtitle"></p> <button id="cta-button"></button> </section>
+
+        <section class="features">
+            <h2 id="features-heading"></h2>
+            <div class="feature-item">
+                <h3 id="feature1-title"></h3>
+                <p id="feature1-description"></p>
+            </div>
+            </section>
+
+        </main>
+
+    <footer>
+        <p id="footer-copyright"></p>
+    </footer>
+
+    <script src="/js/main.js"></script> 
+    
+    <script>
+        // This script runs after main.js, so main.js can set up utility functions if needed.
+        document.addEventListener('DOMContentLoaded', () => {
+            // Define the current locale based on the folder this file is in
+            const currentLocale = 'de-DE'; 
+            
+            // Function to load locale data (can be in main.js or here)
+            async function loadLocaleData(locale) {
+                try {
+                    // This path is ABSOLUTE from the domain root!
+                    const response = await fetch(`/locales/${locale}.json`); 
+                    if (!response.ok) {
+                        throw new Error(`Failed to load locale data for ${locale}: ${response.statusText}`);
+                    }
+                    return await response.json();
+                } catch (error) {
+                    console.error('Error loading locale data:', error);
+                    // Fallback to a default or show an error message
+                    return {}; 
+                }
+            }
+
+            // Function to apply translations (can be in main.js or here)
+            function applyTranslations(data) {
+                document.getElementById('hero-title').textContent = data.heroTitle || 'Welcome!';
+                document.getElementById('hero-subtitle').textContent = data.heroSubtitle || 'Default subtitle.';
+                document.getElementById('cta-button').textContent = data.callToAction || 'Learn More';
+                document.getElementById('features-heading').textContent = data.featuresHeading || 'Our Features';
+                // ... apply all other translations to elements by their IDs or classes
+                document.getElementById('footer-copyright').textContent = data.footerCopyright || '© 2025 Squared Away Consulting.';
+
+                // Example for language switcher
+                const langSwitcher = document.getElementById('language-switcher');
+                if (langSwitcher) {
+                    langSwitcher.innerHTML = `
+                        <a href="/en-US/">English (US)</a> | 
+                        <a href="/es-ES/">Español (ES)</a> |
+                        <a href="/fr-FR/">Français (FR)</a>
+                        `;
+                    // Highlight current language
+                    langSwitcher.querySelector(`a[href="/${currentLocale}/"]`).classList.add('active-locale');
+                }
+            }
+
+            // Load and apply data for the current locale
+            loadLocaleData(currentLocale).then(data => {
+                applyTranslations(data);
+            });
+        });
+    </script>
+</body>
+</html>
