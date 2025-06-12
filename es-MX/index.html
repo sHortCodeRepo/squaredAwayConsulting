@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squared Away Consulting - Español (MX)</title>
+    
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/style.css"> 
+    
+    <link rel="canonical" href="https://www.squaredawayconsulting.net/es-MX/">
+
+    <meta property="og:title" content="Squared Away Consulting - Español (MX)">
+    <meta property="og:description" content="[Your Mexican Spanish specific description here]">
+    <meta property="og:url" content="https://www.squaredawayconsulting.net/es-MX/">
+    <meta property="og:image" content="https://www.squaredawayconsulting.net/images/og-image.jpg">
+    
+    <script async src="https://api.glia.com/salemove_integration.js"></script> 
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/es-MX/">Inicio</a>
+            <a href="/es-MX/services.html">Servicios</a>
+            <a href="/es-MX/about.html">Nosotros</a>
+            <a href="/es-MX/contact.html">Contacto</a>
+            <div id="language-switcher"></div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1 id="hero-title"></h1> 
+            <p id="hero-subtitle"></p> 
+            <button id="cta-button"></button> 
+        </section>
+
+        <section class="features">
+            <h2 id="features-heading"></h2>
+            <div class="feature-item">
+                <h3 id="feature1-title"></h3>
+                <p id="feature1-description"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p id="footer-copyright"></p>
+    </footer>
+
+    <script src="/js/main.js"></script> 
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Define the current locale for THIS page
+            const currentLocale = 'es-MX'; 
+            
+            // Function to load locale data (can be in main.js or here)
+            async function loadLocaleData(locale) {
+                try {
+                    const response = await fetch(`/locales/${locale}.json`); 
+                    if (!response.ok) {
+                        throw new Error(`Failed to load locale data for ${locale}: ${response.statusText}`);
+                    }
+                    return await response.json();
+                } catch (error) {
+                    console.error('Error loading locale data:', error);
+                    return {}; 
+                }
+            }
+
+            // Function to apply translations (can be in main.js or here)
+            function applyTranslations(data) {
+                document.getElementById('hero-title').textContent = data.heroTitle || '¡Bienvenido!';
+                document.getElementById('hero-subtitle').textContent = data.heroSubtitle || 'Subtítulo predeterminado.';
+                document.getElementById('cta-button').textContent = data.callToAction || 'Saber más';
+                document.getElementById('features-heading').textContent = data.featuresHeading || 'Nuestras características';
+                // ... apply all other translations to elements by their IDs or classes
+                document.getElementById('footer-copyright').textContent = data.footerCopyright || '© 2025 Squared Away Consulting.';
+
+                // Example for language switcher - **REMEMBER TO INCLUDE ALL YOUR LANGUAGES HERE**
+                const langSwitcher = document.getElementById('language-switcher');
+                if (langSwitcher) {
+                    langSwitcher.innerHTML = `
+                        <a href="/en-US/">English (US)</a> | 
+                        <a href="/fr-CA/">Français (CA)</a> |
+                        <a href="/de-DE/">Deutsch (DE)</a> |
+                        <a href="/et-EE/">Eesti (EE)</a> 
+                        `;
+                    // Highlight current language
+                    langSwitcher.querySelector(`a[href="/${currentLocale}/"]`).classList.add('active-locale');
+                }
+            }
+
+            // Load and apply data for the current locale
+            loadLocaleData(currentLocale).then(data => {
+                applyTranslations(data);
+
+                // --- START OF GLIA LOCALE INTEGRATION ---
+                const setGliaLocale = () => {
+                    // Check if window.VisitorApp and its setLocale method are available
+                    if (window.VisitorApp && typeof window.VisitorApp.setLocale === 'function') {
+                        window.VisitorApp.setLocale(currentLocale);
+                        console.log(`Glia Visitor App locale set to: ${currentLocale}`);
+                    } else {
+                        // If not ready, retry after a short delay
+                        console.warn('Glia Visitor App API or setLocale function not found. Retrying in 500ms...');
+                        setTimeout(setGliaLocale, 500); 
+                    }
+                };
+
+                // Initial call to start trying to set the Glia locale
+                setGliaLocale();
+                // --- END OF GLIA LOCALE INTEGRATION ---
+
+            });
+        });
+    </script>
+</body>
+</html>
