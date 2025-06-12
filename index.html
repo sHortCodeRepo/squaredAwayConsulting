@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> <head>
+<html lang="en-US"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Squared Away Consulting</title>
@@ -14,13 +14,16 @@
 <body>
    <header>
         <nav>
-            <a href="javascript:void(0)" onclick="window.app.navigate('/')">Home</a>
-            <a href="javascript:void(0)" onclick="window.app.navigate('/about')">About</a>
+            <a href="javascript:void(0)" onclick="window.location.href = `/${getCurrentLocale()}/`">Home</a>
+            <a href="javascript:void(0)" onclick="window.location.href = `/${getCurrentLocale()}/about`">About</a>
         </nav>
         <select id="lang-switcher">
-            <option value="en">English</option>
-            <option value="et">Eesti</option>
-            <option value="es">Español</option>
+            <option value="en-US">English (United States)</option>
+            <option value="en-GB">English (United Kingdom)</option>
+            <option value="et-EE">Eesti (Estonia)</option>
+            <option value="es-MX">Español (México)</option>
+            <option value="de-DE">Deutsch (Deutschland)</option>
+            <option value="fr-CA">Français (Canada)</option>
             </select>
     </header>
 
