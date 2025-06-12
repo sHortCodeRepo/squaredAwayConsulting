@@ -104,8 +104,8 @@
                         console.log(`Glia Visitor App locale set to: ${currentLocale}`);
                     } else {
                         // If not ready, retry after a short delay
-                        console.warn('Glia Visitor App API or setLocale function not found. Retrying in 500ms...');
-                        setTimeout(setGliaLocale, 500); 
+                        console.warn('Glia Visitor App API or setLocale function not found. Retrying in 1000ms...');
+                        setTimeout(setGliaLocale, 1000); 
                     }
                 };
 
