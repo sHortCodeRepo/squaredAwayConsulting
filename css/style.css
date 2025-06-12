@@ -1,0 +1,327 @@
+/* Import Google Font - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* --- Base Styles and Reset --- */
+*, *::before, *::after {
+    /* Ensures padding and border are included in the element's total width and height */
+    box-sizing: border-box;
+    /* Remove default margin and padding from all elements */
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    /* Base font size for rem units */
+    font-size: 16px;
+    /* Smooth scrolling for anchor links */
+    scroll-behavior: smooth;
+}
+
+body {
+    /* Set the primary font for the entire document */
+    font-family: 'Inter', sans-serif;
+    /* Define base text color */
+    color: #333;
+    /* Set a comfortable line height for readability */
+    line-height: 1.6;
+    /* Background color for the entire page */
+    background-color: #f7fafc; /* Light gray */
+    /* Ensure body takes at least the full viewport height */
+    min-height: 100vh;
+    /* Use flexbox to push the footer to the bottom */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Global Layout Containers --- */
+main {
+    /* Allows main content to grow and fill available space */
+    flex-grow: 1;
+    /* Limit content width for better readability on large screens */
+    max-width: 1200px;
+    /* Center the main content horizontally */
+    margin: 2rem auto; /* Top/bottom margin, auto left/right */
+    /* Add horizontal padding for smaller screens */
+    padding: 0 1.5rem;
+}
+
+/* --- Header Section --- */
+header {
+    background-color: #ffffff; /* White background */
+    padding: 1rem 2rem; /* Vertical and horizontal padding */
+    /* Soft rounded corners for the header */
+    border-radius: 0.75rem; 
+    /* Subtle shadow for depth */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Center the header on wide screens */
+    max-width: 1200px;
+    margin: 1.5rem auto 0; /* Top margin, auto left/right, no bottom margin */
+    display: flex; /* Use flex for internal layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+}
+
+/* --- Navigation Bar --- */
+nav {
+    display: flex;
+    /* Distribute space between and around items */
+    justify-content: center; /* Center items for primary navigation */
+    /* Allow items to wrap onto the next line on smaller screens */
+    flex-wrap: wrap; 
+    /* Center items vertically */
+    align-items: center;
+    width: 100%; /* Ensure nav takes full width of header */
+}
+
+nav a {
+    /* Padding for clickable area */
+    padding: 0.75rem 1.25rem; 
+    /* Remove underline */
+    text-decoration: none; 
+    /* Text color for links */
+    color: #4a5568; /* Dark gray */
+    /* Medium font weight */
+    font-weight: 500; 
+    /* Smooth transition for hover effects */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    /* Slightly rounded corners for nav links */
+    border-radius: 0.5rem; 
+}
+
+nav a:hover {
+    background-color: #edf2f7; /* Light gray on hover */
+    color: #2d3748; /* Darker gray on hover */
+    /* Add a subtle shadow on hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Language Switcher --- */
+#language-switcher {
+    margin-left: 1.5rem; /* Space from navigation links */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem; /* Space between language links */
+}
+
+#language-switcher a {
+    font-size: 0.875rem; /* Smaller font size */
+    padding: 0.5rem 0.75rem;
+    color: #4a5568; /* Dark gray */
+    text-decoration: none;
+    border: 1px solid #cbd5e0; /* Light border */
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#language-switcher a:hover {
+    background-color: #e2e8f0; /* Slightly darker gray on hover */
+    border-color: #a0aec0; /* Darker border on hover */
+}
+
+#language-switcher a.active-locale {
+    background-color: #4299e1; /* Blue for active locale */
+    color: #ffffff; /* White text for active locale */
+    border-color: #4299e1;
+    font-weight: 600;
+}
+
+
+/* --- Hero Section --- */
+.hero {
+    text-align: center;
+    padding: 4rem 2rem; /* Ample padding for hero section */
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem; /* Space from header */
+}
+
+.hero h1 {
+    font-size: 3rem; /* Large heading size */
+    font-weight: 700; /* Bold font weight */
+    color: #2d3748; /* Darker text for headings */
+    margin-bottom: 1rem; /* Space below heading */
+}
+
+.hero p {
+    font-size: 1.25rem; /* Slightly larger paragraph text */
+    color: #4a5568; /* Medium gray text */
+    margin-bottom: 2rem; /* Space below paragraph */
+    max-width: 800px; /* Limit line length for readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero button {
+    background-color: #4299e1; /* Blue button */
+    color: #ffffff; /* White text */
+    padding: 1rem 2rem; /* Padding for button */
+    border: none; /* No border */
+    border-radius: 0.5rem; /* Rounded button corners */
+    font-size: 1.125rem; /* Larger font size for button text */
+    font-weight: 600; /* Bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+}
+
+.hero button:hover {
+    background-color: #3182ce; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More prominent shadow */
+}
+
+/* --- Features Section --- */
+.features {
+    padding: 4rem 0; /* Vertical padding */
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 2.25rem; /* Heading size */
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 2.5rem; /* Space below heading */
+}
+
+.feature-grid {
+    display: grid;
+    /* Responsive grid columns: 1 for small, 2 for medium, 3 for large */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem; /* Space between grid items */
+}
+
+.feature-item {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+}
+
+.feature-item h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #4299e1; /* Blue heading for features */
+    margin-bottom: 0.75rem;
+}
+
+.feature-item p {
+    font-size: 1rem;
+    color: #4a5568;
+}
+
+/* --- Footer Section --- */
+footer {
+    background-color: #2d3748; /* Dark blue-gray */
+    color: #ffffff; /* White text */
+    padding: 1.5rem 2rem; /* Padding */
+    text-align: center;
+    font-size: 0.9rem;
+    /* Soft rounded corners, top only */
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+    margin-top: 2rem; /* Space from main content */
+    /* Center the footer on wide screens */
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Responsive Adjustments --- */
+
+/* Medium screens (e.g., tablets, small desktops) */
+@media (max-width: 768px) {
+    header, main, footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    nav {
+        flex-direction: column; /* Stack nav items vertically */
+        align-items: center;
+        gap: 0.5rem; /* Add space between stacked items */
+    }
+
+    nav a {
+        padding: 0.6rem 1rem;
+    }
+
+    #language-switcher {
+        margin-left: 0; /* Remove left margin when stacking */
+        margin-top: 1rem; /* Add some space from nav links */
+        justify-content: center; /* Center language options */
+    }
+
+    .hero {
+        padding: 3rem 1.5rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .features h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Small screens (e.g., mobile phones) */
+@media (max-width: 480px) {
+    header {
+        padding: 0.75rem 1rem;
+        margin-top: 1rem;
+    }
+
+    main {
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+        padding: 0 0.75rem;
+    }
+
+    .hero {
+        padding: 2.5rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .hero button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .features h2 {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .feature-item {
+        padding: 1.5rem;
+    }
+    
+    .feature-item h3 {
+        font-size: 1.3rem;
+    }
+
+    footer {
+        padding: 1rem 1rem;
+    }
+}
