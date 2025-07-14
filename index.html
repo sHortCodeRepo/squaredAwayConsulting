@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Squared Away Consulting LLC</title>
-    <link rel="icon" type="image/png" href="assets/logo.png">
+    <!-- 
+      Note on favicon: For best results and to avoid distortion, the source 
+      image ('assets/logo.png') should ideally be a square (e.g., 32x32 pixels).
+    -->
+    <link rel="icon" type="image/png" href="assets/logo.png" sizes="any">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,8 +17,8 @@
     <style>
         /* Custom styles to match the logo's color palette */
         :root {
-            --sac-blue: #1a3a6d; /* Deep blue from the logo */
-            --sac-red: #c02c38;   /* Strong red from the logo */
+            --sac-blue: #0a2e69; /* Updated Primary Blue */
+            --sac-red: #b72733;   /* Updated Primary Red */
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -41,6 +45,9 @@
         .language-selector:hover .language-dropdown {
             display: block;
         }
+        .hover-bg-sac-red:hover {
+            background-color: var(--sac-red);
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -50,7 +57,7 @@
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="flex items-center">
                 <!-- Using a smaller version of the logo in the nav bar -->
-                <img src="assets/logo.png" alt="Squared Away Consulting LLC Logo" class="h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/150x50/1a3a6d/ffffff?text=SAC+LLC';">
+                <img src="assets/logo.png" alt="Squared Away Consulting LLC Logo" class="h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/150x50/0a2e69/ffffff?text=SAC+LLC';">
                 <span class="ml-3 font-display text-xl font-bold text-sac-blue">Squared Away Consulting</span>
             </div>
             <div class="flex items-center space-x-4">
@@ -78,11 +85,14 @@
     <main>
         <div class="relative hero-bg text-center py-20 md:py-24 px-6">
             <div class="relative z-10">
-                <img src="assets/logo.png" alt="Squared Away Consulting LLC Logo" class="h-24 md:h-32 mx-auto mb-6 rounded-full shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/128x128/ffffff/1a3a6d?text=SAC';">
+                <!-- White circular background for the logo -->
+                <div class="inline-flex items-center justify-center p-2 bg-white rounded-full shadow-lg mx-auto mb-6">
+                    <img src="assets/logo.png" alt="Squared Away Consulting LLC Logo" class="h-24 md:h-32" onerror="this.onerror=null;this.src='https://placehold.co/128x128/ffffff/0a2e69?text=SAC';">
+                </div>
                 <h1 class="text-4xl md:text-6xl font-display font-bold text-sac-blue leading-tight mt-4">We Got Everything Squared Away.</h1>
                 <p class="mt-4 text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">...and then we retired. But for a while there, we were the sharpest tools in the shed for strategic solutions and operational excellence.</p>
                 <div class="mt-8">
-                    <a href="#" class="bg-sac-red text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-red-700 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg btn-disabled" title="Operations Ceased">Mission Complete</a>
+                    <a href="#" class="bg-sac-red text-white font-bold py-3 px-8 rounded-lg text-lg hover-bg-sac-red transition duration-300 ease-in-out transform hover:scale-105 shadow-lg btn-disabled" title="Operations Ceased">Mission Complete</a>
                 </div>
             </div>
         </div>
