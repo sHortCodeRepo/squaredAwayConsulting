@@ -3,8 +3,8 @@ function setGliaLocaleFrenchCA() {
   // Check if the 'sm' object is available
   if (typeof sm !== 'undefined' && sm.getApi) {
     sm.getApi({version: 'v1'}).then(function(api){
-      api.setLocale('fr-CA');
-      console.log("Glia locale set to fr-CA.");
+      api.setLocale('bulles-francais');
+      console.log("Glia locale set to bulles-francais.");
     });
   } else {
     console.log("Glia API not ready, will try again.");
